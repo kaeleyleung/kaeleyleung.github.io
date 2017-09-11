@@ -1,24 +1,36 @@
-// Contact subject
-$subject ="$subject"; 
-// Details
-$message="$detail";
- 
-// Mail of sender
-$mail_from="$customer_mail"; 
-// From 
-$header="from: $name <$mail_from>";
- 
-// Enter your email address
-$to ='kaeleyleung@gmail.com';
- 
-$send_contact=mail($to,$subject,$message,$header);
- 
-// Check, if message sent to your email 
-// display message "We've recived your information"
-if($send_contact){
-echo "We've recived your contact information";
+<?php
+/* Set e-mail recipient */
+$myemail = “kaeleyleung@gmail.com”;
+
+/* Send the message using mail() function */
+mail($myemail, $miniusername, $message);
+
+/* Functions we used */
+function check_input($data, $problem='')
+{
+$data = trim($data);
+$data = stripslashes($data);
+$data = htmlspecialchars($data);
+if ($problem && strlen($data) == 0)
+{
+show_error($problem);
 }
-else {
-echo "ERROR";
+return $data;
+}
+
+function show_error($myError)
+{
+?>
+<html>
+<body>
+
+<p>Please correct the following error:</p>
+<strong><?php echo $myError; ?></strong>
+<p>Hit the back button and try again</p>
+
+</body>
+</html>
+<?php
+exit();
 }
 ?>
